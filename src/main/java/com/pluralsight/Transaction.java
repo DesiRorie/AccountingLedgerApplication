@@ -3,12 +3,21 @@ package com.pluralsight;
 
 import java.text.DecimalFormat;
 
-public class Deposit {
+public class Transaction {
     private  String date;
     private String time;
     private String description;
     private String vendor;
     private double amount;
+    private String type;
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
 
     public String getDate() {
         return date;
@@ -44,20 +53,25 @@ public class Deposit {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+//    public void setAmount(double amount) {
+//        this.amount = amount;
+//    }
 
-    public Deposit(String date, String time, String description, String vendor, double amount) {
+    public Transaction(String date, String time, String description, String vendor, double amount, String type) {
         this.date = date;
         this.time = time;
         this.description = description;
         this.vendor = vendor;
         this.amount = amount;
+        this.type = type;
+
+
     }
     @Override
     public String toString() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        String formattedAmount = decimalFormat.format(amount);
 //        DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        return  date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+        return  date + "|" + time + "|" + description + "|" + vendor + "|" + formattedAmount  ;
     }
 }
