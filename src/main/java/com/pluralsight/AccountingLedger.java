@@ -57,6 +57,7 @@ public class AccountingLedger {
                     System.out.print("Enter the vendor:");
                     vendor = scanner.next();
                     scanner.nextLine();
+                    vendor = vendor.trim();
 
                     System.out.print("Enter the amount of item:");
                     amount = Double.parseDouble(scanner.next());
@@ -152,9 +153,7 @@ public class AccountingLedger {
                                 if (transactionItem.getAmount() < 0) {
                                     System.out.println(transactionItem);
                                 }
-//                                if (transactionItem.getType().equals("Payment")) {
-//                                    System.out.println(transactionItem);
-//                                }
+//
                             }
                         }
                         break;
@@ -202,13 +201,12 @@ public class AccountingLedger {
                                     }
                                     case "5": {
                                         System.out.println("Enter the vendor to search");
+                                        String chosenVendor = scanner.nextLine().trim();
 
-                                        String chosenVendor;
-                                        chosenVendor = scanner.next();
-                                        scanner.nextLine();
+//                                        System.out.println(chosenVendor);
 
                                         for (Transaction transactionItem : transactionArrayList) {
-                                            if (transactionItem.getVendor().equals(chosenVendor)) {
+                                            if (transactionItem.getVendor().equals(chosenVendor.trim())) {
                                                 System.out.println(transactionItem);
                                             }
                                         }
@@ -430,30 +428,14 @@ public class AccountingLedger {
 
         scanner.nextLine();
         System.out.println("Please give us a description of the deposit: ");
-      description = scanner.nextLine();
+        description = scanner.nextLine();
 
         System.out.println("Enter the vendor: ");
-         vendor = scanner.nextLine();
+        vendor = scanner.nextLine();
+        vendor = vendor.trim();
 
         System.out.println("Enter the amount to deposit: ");
-         amount = scanner.nextDouble();
-
-
-
-
-//        System.out.println("To complete a deposit we need more information.");
-//
-//        System.out.print("Please give us a description of the deposit: ");
-//        description = scanner.nextLine();
-//
-//
-//        System.out.print("Enter the vendor:");
-//        vendor = scanner.nextLine();
-//
-//
-//        System.out.println("Enter the amount to deposit");
-//        amount = Double.parseDouble(scanner.next());
-//        scanner.nextLine();
+        amount = scanner.nextDouble();
 
         //this time its deposit
         String type = "Deposit";
@@ -473,15 +455,5 @@ public class AccountingLedger {
         } catch (IOException e) {
             throw new IOException(e);
         }
-
-
-
-
-
-
     }
-
-
-
-
 }
