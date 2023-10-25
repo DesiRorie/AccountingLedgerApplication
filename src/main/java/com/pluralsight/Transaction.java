@@ -3,7 +3,7 @@ package com.pluralsight;
 
 import java.text.DecimalFormat;
 
-public class Transaction {
+public class Transaction implements Comparable<Transaction> {
     private  String date;
     private String time;
     private String description;
@@ -53,9 +53,7 @@ public class Transaction {
         return amount;
     }
 
-//    public void setAmount(double amount) {
-//        this.amount = amount;
-//    }
+
 
     public Transaction(String date, String time, String description, String vendor, double amount, String type) {
         this.date = date;
@@ -66,6 +64,11 @@ public class Transaction {
         this.type = type;
 
 
+    }
+    @Override
+    public int compareTo(Transaction otherTransaction) {
+        // Compare transactions based on their dates
+        return otherTransaction.getDate().compareTo(this.date);
     }
     @Override
     public String toString() {

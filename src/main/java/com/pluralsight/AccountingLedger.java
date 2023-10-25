@@ -3,10 +3,7 @@ package com.pluralsight;
 import java.io.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class AccountingLedger {
@@ -103,7 +100,18 @@ public class AccountingLedger {
                     switch (chosenLedgerOption.toLowerCase()){
                         case "a":{
                             System.out.println("All entries");
+
+                            Collections.sort(transactionArrayList, new Comparator<Transaction>() {
+                                @Override
+                                public int compare(Transaction t1, Transaction t2) {
+
+                                    return t2.getTime().compareTo(t1.getTime());
+                                }
+                            });
+
+//                            Collections.sort(transactionArrayList);
                             for (Transaction transactionItem : transactionArrayList) {
+
                                 System.out.println(transactionItem);
                             }
                         }
@@ -112,19 +120,41 @@ public class AccountingLedger {
                         case "d":
                         {
                             System.out.println("Deposits");
+                            Collections.sort(transactionArrayList, new Comparator<Transaction>() {
+                                @Override
+                                public int compare(Transaction t1, Transaction t2) {
+
+                                    return t2.getTime().compareTo(t1.getTime());
+                                }
+                            });
+
                             for (Transaction transactionItem : transactionArrayList) {
-                                if (transactionItem.getType().equals("Deposit")) {
+
+                                if (transactionItem.getAmount() > 0) {
                                     System.out.println(transactionItem);
                                 }
+//                                if (transactionItem.getType().equals("Deposit")) {
+//                                    System.out.println(transactionItem);
+//                                }
                             }
                         }
                         break;
                         case "p":{
                             System.out.println("Payments");
+                            Collections.sort(transactionArrayList, new Comparator<Transaction>() {
+                                @Override
+                                public int compare(Transaction t1, Transaction t2) {
+
+                                    return t2.getTime().compareTo(t1.getTime());
+                                }
+                            });
                             for (Transaction transactionItem : transactionArrayList) {
-                                if (transactionItem.getType().equals("Payment")) {
+                                if (transactionItem.getAmount() < 0) {
                                     System.out.println(transactionItem);
                                 }
+//                                if (transactionItem.getType().equals("Payment")) {
+//                                    System.out.println(transactionItem);
+//                                }
                             }
                         }
                         break;
@@ -337,6 +367,13 @@ public class AccountingLedger {
                 Transaction transaction = readCSV(line);
                 if (transaction != null) {
                     transactionArrayList.add(transaction);
+                    Collections.sort(transactionArrayList, new Comparator<Transaction>() {
+                        @Override
+                        public int compare(Transaction t1, Transaction t2) {
+
+                            return t2.getTime().compareTo(t1.getTime());
+                        }
+                    });
                 }
             }
         } catch (IOException e) {
@@ -386,25 +423,37 @@ public class AccountingLedger {
 
         String currentTime  = formatter1.format(date);
         final String currentDate = formatter2.format(date);
+
         String description;
         String vendor;
         double amount;
 
-
-
-        System.out.println("To complete a deposit we need more information.");
-
-        System.out.print("Please give us a description of the deposit: ");
-        description = scanner.next();
         scanner.nextLine();
+        System.out.println("Please give us a description of the deposit: ");
+      description = scanner.nextLine();
 
-        System.out.print("Enter the vendor:");
-        vendor = scanner.next();
-        scanner.nextLine();
+        System.out.println("Enter the vendor: ");
+         vendor = scanner.nextLine();
 
-        System.out.println("Enter the amount to deposit");
-        amount = Double.parseDouble(scanner.next());
-        scanner.nextLine();
+        System.out.println("Enter the amount to deposit: ");
+         amount = scanner.nextDouble();
+
+
+
+
+//        System.out.println("To complete a deposit we need more information.");
+//
+//        System.out.print("Please give us a description of the deposit: ");
+//        description = scanner.nextLine();
+//
+//
+//        System.out.print("Enter the vendor:");
+//        vendor = scanner.nextLine();
+//
+//
+//        System.out.println("Enter the amount to deposit");
+//        amount = Double.parseDouble(scanner.next());
+//        scanner.nextLine();
 
         //this time its deposit
         String type = "Deposit";
