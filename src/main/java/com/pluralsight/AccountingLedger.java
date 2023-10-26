@@ -103,7 +103,7 @@ public class AccountingLedger {
                             System.out.println("All entries");
 
                             Collections.sort(transactionArrayList, new Comparator<Transaction>() {
-                                @Override
+
                                 public int compare(Transaction t1, Transaction t2) {
 
                                     return t2.getTime().compareTo(t1.getTime());
@@ -122,7 +122,7 @@ public class AccountingLedger {
                         {
                             System.out.println("Deposits");
                             Collections.sort(transactionArrayList, new Comparator<Transaction>() {
-                                @Override
+
                                 public int compare(Transaction t1, Transaction t2) {
 
                                     return t2.getTime().compareTo(t1.getTime());
@@ -143,7 +143,7 @@ public class AccountingLedger {
                         case "p":{
                             System.out.println("Payments");
                             Collections.sort(transactionArrayList, new Comparator<Transaction>() {
-                                @Override
+
                                 public int compare(Transaction t1, Transaction t2) {
 
                                     return t2.getTime().compareTo(t1.getTime());
@@ -366,7 +366,7 @@ public class AccountingLedger {
                 if (transaction != null) {
                     transactionArrayList.add(transaction);
                     Collections.sort(transactionArrayList, new Comparator<Transaction>() {
-                        @Override
+
                         public int compare(Transaction t1, Transaction t2) {
 
                             return t2.getTime().compareTo(t1.getTime());
