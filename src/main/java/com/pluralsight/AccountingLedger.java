@@ -25,6 +25,8 @@ public class AccountingLedger {
             System.out.println("L) Ledger");
             System.out.println("X) Exit");
 
+
+
             chosenOptions = scanner.next();
             switch (chosenOptions.toLowerCase()){
                 case "d":{
@@ -225,6 +227,7 @@ public class AccountingLedger {
                 case "x":{
                     //saves transactions for use next time code runs
                     saveTransactions();
+                    scanner.close();
                     System.exit(0);
                 }
             }
